@@ -1,5 +1,4 @@
 class V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
-  include RackSessionFix
 
   private
     def sign_up_params
