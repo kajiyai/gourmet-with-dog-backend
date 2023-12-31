@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id                     :uuid             not null, primary key
-#  admin                  :boolean          default(FALSE)
 #  allow_password_change  :boolean          default(FALSE)
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
@@ -36,7 +35,4 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  def admin?
-    admin
-  end
 end
