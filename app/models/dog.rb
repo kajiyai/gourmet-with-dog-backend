@@ -23,4 +23,5 @@
 #
 class Dog < ApplicationRecord
   belongs_to :user
+  belongs_to :dog_breed, class_name: 'DogBreed', foreign_key: 'breed_id'
 end
