@@ -7,7 +7,6 @@ class CreateDogs < ActiveRecord::Migration[7.0]
       t.integer :breed_id
       t.integer :age
       t.string :allergy
-      t.datetime :visited_at
       t.string :image_url
 
       t.timestamps

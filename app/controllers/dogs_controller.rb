@@ -1,9 +1,10 @@
 class DogsController < ApplicationController
+  before_action :authenticate_v1_user! # 追加
   before_action :set_dog, only: %i[ show update destroy ]
 
   # GET /dogs
   def index
-    @dogs = Dog.all
+    @dogs = current_v1_user.dogs # 変更
 
     render json: @dogs
   end
@@ -15,7 +16,7 @@ class DogsController < ApplicationController
 
   # POST /dogs
   def create
-    @dog = Dog.new(dog_params)
+    @dog = current_v1_user.dogs.build(dog_params) # 変更
 
     if @dog.save
       render json: @dog, status: :created, location: @dog
@@ -39,13 +40,11 @@ class DogsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_dog
-      @dog = Dog.find(params[:id])
+      @dog = current_v1_user.dogs.find(params[:id]) # 変更
     end
 
-    # Only allow a list of trusted parameters through.
     def dog_params
-      params.require(:dog).permit(:user_id, :name, :size, :breed_id, :age, :allergy, :visited_at, :image_url)
+      params.require(:dog).permit(:name, :size, :breed_id, :age, :allergy, :visited_at, :image_url)
     end
 end

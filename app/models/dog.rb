@@ -8,7 +8,6 @@
 #  image_url  :string
 #  name       :string
 #  size       :string
-#  visited_at :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  breed_id   :integer
