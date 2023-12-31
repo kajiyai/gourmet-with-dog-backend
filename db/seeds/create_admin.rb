@@ -1,11 +1,10 @@
 puts '管理者ユーザーを作成しています...'
 
 begin
-  admin_user = User.find_or_create_by!(email: "admin@example.com") do |user|
-    user.name = "管理者"
-    user.password = "password"
-    user.password_confirmation = "password"
-    user.admin = true
+  admin_user = Admin.find_or_create_by!(email: "admin@example.com") do |admin|
+    admin.name = "管理者"
+    admin.password = "password"
+    admin.password_confirmation = "password"
   end
 
   if admin_user.persisted?

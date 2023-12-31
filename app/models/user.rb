@@ -16,6 +16,7 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  tokens                 :text
+#  type                   :string
 #  uid                    :string           default(""), not null
 #  unconfirmed_email      :string
 #  created_at             :datetime         not null
