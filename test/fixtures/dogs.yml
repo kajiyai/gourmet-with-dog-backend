@@ -10,7 +10,7 @@
 #  size       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  breed_id   :integer
+#  breed_id   :uuid
 #  user_id    :uuid             not null
 #
 # Indexes
