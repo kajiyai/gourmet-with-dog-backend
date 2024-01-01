@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_31_212551) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_01_124803) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -33,6 +33,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_31_212551) do
     t.datetime "updated_at", null: false
     t.uuid "breed_id"
     t.index ["user_id"], name: "index_dogs_on_user_id"
+  end
+
+  create_table "restaurants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "owner_id"
+    t.uuid "category_id"
+    t.uuid "amenity_id"
+    t.string "name"
+    t.uuid "address_id"
+    t.string "phone_number"
+    t.decimal "min_price"
+    t.decimal "max_price"
+    t.integer "pet_friendly_score"
+    t.text "feature"
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_restaurants_on_address_id"
+    t.index ["amenity_id"], name: "index_restaurants_on_amenity_id"
+    t.index ["category_id"], name: "index_restaurants_on_category_id"
+    t.index ["owner_id"], name: "index_restaurants_on_owner_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
