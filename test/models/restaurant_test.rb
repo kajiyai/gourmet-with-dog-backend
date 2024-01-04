@@ -13,14 +13,12 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  address_id         :uuid
-#  amenity_id         :uuid
 #  category_id        :uuid
 #  owner_id           :uuid
 #
 # Indexes
 #
 #  index_restaurants_on_address_id   (address_id)
-#  index_restaurants_on_amenity_id   (amenity_id)
 #  index_restaurants_on_category_id  (category_id)
 #  index_restaurants_on_owner_id     (owner_id)
 #

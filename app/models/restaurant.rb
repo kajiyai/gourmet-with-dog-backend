@@ -13,21 +13,19 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  address_id         :uuid
-#  amenity_id         :uuid
 #  category_id        :uuid
 #  owner_id           :uuid
 #
 # Indexes
 #
 #  index_restaurants_on_address_id   (address_id)
-#  index_restaurants_on_amenity_id   (amenity_id)
 #  index_restaurants_on_category_id  (category_id)
 #  index_restaurants_on_owner_id     (owner_id)
 #
 class Restaurant < ApplicationRecord
   belongs_to :owner
   belongs_to :category, foreign_key: 'category_id'
-  belongs_to :amenity, foreign_key: 'amenity_id'
+  has_and_belongs_to_many :amenities
 
   validates :name, presence: true
   validates :phone_number, presence: true

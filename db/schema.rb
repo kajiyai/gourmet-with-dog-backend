@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_03_084700) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_04_072446) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -21,6 +21,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_03_084700) do
     t.string "icon_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "amenities_restaurants", id: false, force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
+    t.bigint "amenity_id", null: false
+    t.index ["amenity_id", "restaurant_id"], name: "index_amenities_restaurants_on_amenity_id_and_restaurant_id"
+    t.index ["restaurant_id", "amenity_id"], name: "index_amenities_restaurants_on_restaurant_id_and_amenity_id"
   end
 
   create_table "dog_breeds", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -46,7 +53,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_03_084700) do
   create_table "restaurants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "owner_id"
     t.uuid "category_id"
-    t.uuid "amenity_id"
     t.string "name"
     t.uuid "address_id"
     t.string "phone_number"
@@ -58,7 +64,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_03_084700) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_restaurants_on_address_id"
-    t.index ["amenity_id"], name: "index_restaurants_on_amenity_id"
     t.index ["category_id"], name: "index_restaurants_on_category_id"
     t.index ["owner_id"], name: "index_restaurants_on_owner_id"
   end
