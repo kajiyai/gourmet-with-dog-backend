@@ -15,4 +15,5 @@
 #  index_categories_on_parent_id  (parent_id)
 #
 class Category < ApplicationRecord
+  has_and_belongs_to_many :restaurants
 end
