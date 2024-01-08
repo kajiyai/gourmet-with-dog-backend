@@ -22,7 +22,6 @@
 #
 class Restaurant < ApplicationRecord
   belongs_to :owner
-  belongs_to :category, foreign_key: 'category_id'
   has_and_belongs_to_many :amenities
   has_and_belongs_to_many :categories
 
