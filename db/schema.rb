@@ -43,6 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_04_111043) do
   create_table "categories_restaurants", id: false, force: :cascade do |t|
     t.bigint "restaurant_id", null: false
     t.bigint "category_id", null: false
+    t.index ["category_id", "restaurant_id"], name: "index_categories_restaurants_on_category_id_and_restaurant_id"
+    t.index ["restaurant_id", "category_id"], name: "index_categories_restaurants_on_restaurant_id_and_category_id"
   end
 
   create_table "dog_breeds", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
