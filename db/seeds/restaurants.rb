@@ -1,10 +1,18 @@
 puts 'レストランを作成しています...'
 
 begin
+  # 特定のオーナーを名前で検索
+  owner = Owner.find_by(name: 'オーナー1')
+
+  # オーナーが見つからない場合のエラーハンドリング
+  if owner.nil?
+    raise '指定されたオーナーが見つかりません。'
+  end
+
   # サンプルデータとしてレストランを作成
   restaurant = Restaurant.find_or_create_by!(name: 'レストラン名') do |r|
     r.phone_number = '123-456-7890'
-    r.owner_id = Owner.first.id
+    r.owner_id = owner.id
   end
 
   if restaurant.persisted?
