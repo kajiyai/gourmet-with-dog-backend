@@ -9,10 +9,19 @@ begin
     raise '指定されたオーナーが見つかりません。'
   end
 
+  # 住所情報を検索または作成
+  address = Address.find_by!(
+    street: '中央通り1-2-3',
+    city: '東京市',
+    prefecture: '東京都',
+    postal_code: '100-0001'
+  )
+
   # サンプルデータとしてレストランを作成
   restaurant = Restaurant.find_or_create_by!(name: 'レストラン名') do |r|
     r.phone_number = '123-456-7890'
     r.owner_id = owner.id
+    r.address_id = address.id
   end
 
   if restaurant.persisted?
