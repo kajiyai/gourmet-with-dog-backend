@@ -25,6 +25,7 @@ class Restaurant < ApplicationRecord
   has_and_belongs_to_many :amenities
   has_and_belongs_to_many :categories
   belongs_to :address
+  has_many :reviews, dependent: :destroy
 
   validates :name, presence: true
   validates :phone_number, presence: true
