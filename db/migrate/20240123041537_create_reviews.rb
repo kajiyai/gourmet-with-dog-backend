@@ -6,7 +6,6 @@ class CreateReviews < ActiveRecord::Migration[7.0]
       t.integer :evaluation
       t.text :comment
       t.datetime :visited_at
-      t.string :image_url
 
       t.timestamps
     end

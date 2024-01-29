@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_08_045627) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_29_135405) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -92,6 +92,26 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_08_045627) do
     t.index ["owner_id"], name: "index_restaurants_on_owner_id"
   end
 
+  create_table "review_images", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "review_id", null: false
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_review_images_on_review_id"
+  end
+
+  create_table "reviews", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "restaurant_id"
+    t.integer "evaluation"
+    t.text "comment"
+    t.datetime "visited_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -118,4 +138,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_08_045627) do
   end
 
   add_foreign_key "dogs", "users"
+  add_foreign_key "review_images", "reviews"
 end
