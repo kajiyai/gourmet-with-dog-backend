@@ -1,0 +1,43 @@
+# == Schema Information
+#
+# Table name: dogs
+#
+#  id         :uuid             not null, primary key
+#  age        :integer
+#  allergy    :string
+#  image_url  :string
+#  name       :string
+#  size       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  breed_id   :uuid
+#  user_id    :uuid             not null
+#
+# Indexes
+#
+#  index_dogs_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
+
+one:
+  user: one
+  name: MyString
+  size: MyString
+  breed_id: 1
+  age: 1
+  allergy: MyString
+  visited_at: 2023-12-31 05:51:39
+  image_url: MyString
+
+two:
+  user: two
+  name: MyString
+  size: MyString
+  breed_id: 1
+  age: 1
+  allergy: MyString
+  visited_at: 2023-12-31 05:51:39
+  image_url: MyString
