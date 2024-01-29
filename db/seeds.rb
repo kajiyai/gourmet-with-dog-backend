@@ -1,7 +1,17 @@
 puts 'シード処理を開始します...'
 
 # 読み込むシードファイルのリスト
-seed_files = ['create_admin', 'dog_breeds', 'create_users_and_dogs', 'amenities', 'categories', 'owners', 'addresses', 'restaurants']
+seed_files = [
+  'create_admin',
+  'dog_breeds',
+  'create_users_and_dogs',
+  'amenities',
+  'categories',
+  'owners',
+  'addresses',
+  'restaurants',
+  'reviews'
+]
 
 # リストに沿って各シードファイルを読み込む
 seed_files.each do |seed_file|
